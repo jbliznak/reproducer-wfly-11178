@@ -25,13 +25,12 @@
         Maintain separation between the artifact id and the version to help prevent
         merge conflicts between commits changing the GA and those changing the V.
         -->
-        <version>15.0.0.Alpha1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>14.0.0.Final</version>
     </parent>
     <artifactId>helloworld</artifactId>
     <packaging>war</packaging>
-    <name>Quickstart: helloworld</name>
-    <description>Helloworld</description>
+    <name>Quickstart: helloworld - reproducer of WFLY-11178</name>
+    <description>Helloworld - reproducer of WFLY-11178</description>
     
 
     <licenses>
