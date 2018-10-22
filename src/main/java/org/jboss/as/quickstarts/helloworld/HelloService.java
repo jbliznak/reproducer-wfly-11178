@@ -16,15 +16,43 @@
  */
 package org.jboss.as.quickstarts.helloworld;
 
+import javax.xml.XMLConstants;
+import javax.xml.validation.SchemaFactory;
+import java.util.Set;
+
 /**
  * A simple CDI service which is able to say hello to someone
  *
  * @author Pete Muir
  *
  */
+
 public class HelloService {
+    static {
+        if (Boolean.getBoolean("test.use.property"))
+        {
+            System.setProperty("javax.xml.validation.SchemaFactory:http://www.w3.org/2001/XMLSchema",
+                  "org.apache.xerces.jaxp.validation.XMLSchemaFactory");
+        }
+    }
 
     String createHelloMessage(String name) {
+
+        System.out.println("#############################################################");
+        Set<String> propertyNames = System.getProperties().stringPropertyNames();
+        for (String propertyName : propertyNames)
+        {
+            if(propertyName.startsWith("javax.xml"))
+            {
+                System.out.println(propertyName + " = " + System.getProperty(propertyName));
+            }
+        }
+
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        System.out.println(schemaFactory.getClass());
+        System.out.println(schemaFactory.getClass().getProtectionDomain().getCodeSource().getLocation());
+        System.out.println("#############################################################");
+
         return "Hello " + name + "!";
     }
 
